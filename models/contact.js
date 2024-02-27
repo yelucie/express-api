@@ -3,18 +3,12 @@ const { Schema, model } = require('mongoose');
 const contactSchema = new Schema({
     firstname: {
         type: String,
-        required: true
+        required: 'Firstname is required',
     },
     lastname: {
         type: String,
-        required: true
+        required: 'Lastname is required',
     },
-    email: {
-        type: String
-    },
-    notes: {
-        type: String
-    }
-}, { timestamps: true })
+}, { timestamps: true });
 
 module.exports = model("contact", contactSchema);
