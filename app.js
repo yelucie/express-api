@@ -9,7 +9,6 @@ var contactsRouter = require('./routes/contacts');
 
 dotenv.config();
 var mongo_uri = process.env.MONGO_URI;
-mongoose.connect(mongo_uri);
 
 var app = express();
 
@@ -40,5 +39,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose.connect(mongo_uri).then(() => {
+  console.log("Connected to MongoDB");
+  app.listen(3000, () => {
+    console.log("Server is running on port http://localhost:3000");
+  });
+}).catch(err => console.log(err));
 
 module.exports = app;
